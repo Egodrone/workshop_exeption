@@ -15,16 +15,17 @@ import java.util.stream.Stream;
 
 
 public class CSVReader_Writer {
-	 /**
+    /**
      * This method getMaleFirstNames should use a try-catch-finally without resources
      * Should catch FileNotFoundException and IOException
      * You should also close the Buffered reader in the finally block
+     *
      * @return List<String>of male firstnames
      */
-    public static List<String> getMaleFirstNames(){
+    public static List<String> getMaleFirstNames() {
 
-        BufferedReader reader   = null;
-        List <String> names     = null;
+        BufferedReader reader = null;
+        List<String> names = null;
 
         try {
             reader = Files.newBufferedReader(Paths.get("C:\\Users\\deltagare\\Desktop\\workshop-exception\\workshop\\firstname_males.txt"));
@@ -33,7 +34,7 @@ public class CSVReader_Writer {
                     .collect(Collectors.toList());
         } catch (FileNotFoundException e) {
             System.out.println(" File not found: " + e.getMessage());
-        } catch(IOException e) {
+        } catch (IOException e) {
             e.getMessage();
         } finally {
             try {
@@ -43,26 +44,26 @@ public class CSVReader_Writer {
             }
         }
 
-         	return names;
-        }
-
+        return names;
+    }
 
 
     /**
      * This method getFemaleFirstNames should make use of a try-catch with resources
+     *
      * @return returns names
      */
     public static List<String> getFemaleFirstNames() {
 
         List<String> names = null;
 
-        try(BufferedReader reader = Files.newBufferedReader(Paths.get("C:\\Users\\deltagare\\Desktop\\workshop-exception\\workshop\\firstname_female.txt"))){
+        try (BufferedReader reader = Files.newBufferedReader(Paths.get("C:\\Users\\deltagare\\Desktop\\workshop-exception\\workshop\\firstname_female.txt"))) {
             names = reader.lines()
                     .flatMap(line -> Stream.of(line.split(",")))
                     .collect(Collectors.toList());
-        } catch(FileNotFoundException e){
+        } catch (FileNotFoundException e) {
             System.out.println(" File path is incorrect: " + e.getMessage());
-        } catch(IOException e) {
+        } catch (IOException e) {
             System.out.println(" Error accrued: " + e.getMessage());
         }
 
@@ -70,17 +71,17 @@ public class CSVReader_Writer {
     }
 
 
-
     /**
      * This method fetches strings from a file and put them into a list
      * This method might throw IOException which due to the throws clause need to
      * be handled by the caller.
+     *
      * @return List <String> of last names
      * @throws IOException
      */
-    public static List<String> getLastNames() throws IOException{
+    public static List<String> getLastNames() throws IOException {
 
-        List<String> names    = null;
+        List<String> names = null;
         BufferedReader reader = null;
 
         reader = Files.newBufferedReader(Paths.get("C:\\Users\\deltagare\\Desktop\\workshop-exception\\workshop\\lastnames.txt"));
@@ -88,7 +89,7 @@ public class CSVReader_Writer {
                 .flatMap(line -> Stream.of(line.split(",")))
                 .collect(Collectors.toList());
 
-        if(reader != null){
+        if (reader != null) {
             reader.close();
         }
 
@@ -96,13 +97,12 @@ public class CSVReader_Writer {
     }
 
 
-
-    public static void saveLastNames(List <String> lastNames) {
+    public static void saveLastNames(List<String> lastNames) {
 
         try {
             BufferedWriter writer = Files.newBufferedWriter(Paths.get("C:\\Users\\deltagare\\Desktop\\workshop-exception\\workshop\\lastnames.txt"));
 
-            for(String toWrite : lastNames){
+            for (String toWrite : lastNames) {
                 writer.append(toWrite + ",");
             }
             writer.flush();
@@ -110,16 +110,15 @@ public class CSVReader_Writer {
             e.printStackTrace();
         }
 
-      }
+    }
 
 
-
-    public static void saveFemaleNames(List <String> femaleNames) {
+    public static void saveFemaleNames(List<String> femaleNames) {
 
         try {
             BufferedWriter writer = Files.newBufferedWriter(Paths.get("C:\\Users\\deltagare\\Desktop\\workshop-exception\\workshop\\firstname_female.txt"));
 
-            for(String toWrite : femaleNames){
+            for (String toWrite : femaleNames) {
                 writer.append(toWrite + ",");
             }
             writer.flush();
@@ -130,13 +129,12 @@ public class CSVReader_Writer {
     }
 
 
-
-    public static void saveMaleNames(List <String> maleNames) {
+    public static void saveMaleNames(List<String> maleNames) {
 
         try {
             BufferedWriter writer = Files.newBufferedWriter(Paths.get("C:\\Users\\deltagare\\Desktop\\workshop-exception\\workshop\\firstname_males.txt"));
 
-            for(String toWrite : maleNames){
+            for (String toWrite : maleNames) {
                 writer.append(toWrite + ",");
             }
             writer.flush();
@@ -145,7 +143,6 @@ public class CSVReader_Writer {
         }
 
     }
-
 
 
 }

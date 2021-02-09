@@ -7,6 +7,7 @@ import java.nio.charset.StandardCharsets;
 import java.nio.file.*;
 import java.util.List;
 import java.util.Scanner;
+
 import se.lexicon.exceptions.workshop.data_access.NameService;
 import se.lexicon.exceptions.workshop.domain.Person;
 import se.lexicon.exceptions.workshop.fileIO.CSVReader_Writer;
@@ -15,9 +16,7 @@ import se.lexicon.exceptions.workshop.fileIO.CSVReader_Writer;
 
 public class Main {
 
-
-
-	public static void main(String[] args) throws IOException {
+    public static void main(String[] args) throws IOException {
 
         System.out.println(" *****************************\n" +
                 " *** Best App ever created *** \n" +
@@ -43,7 +42,7 @@ public class Main {
         //ns.addMaleFirstName("Jocko");
         //ns.addLastName("Samuelsson");
 
-	    while(true) {
+        while (true) {
             NameService nameService = new NameService(maleFirstNames, femaleFirstNames, lastNames);
             Person test = nameService.getNewRandomPerson();
             System.out.println(test);
@@ -52,7 +51,7 @@ public class Main {
             String input = sc.nextLine();
             System.out.println(input);
 
-            if(input.equalsIgnoreCase("y")) {
+            if (input.equalsIgnoreCase("y")) {
                 // Add to the males
                 System.out.println(" Type a name that you want to add a name: ");
                 //System.out.println(heapFreeSize);
@@ -60,7 +59,7 @@ public class Main {
                 //System.out.println(heapFreeSize - Runtime.getRuntime().freeMemory());
                 boolean nameIsAdded = addNewName(input);
 
-                if(nameIsAdded) {
+                if (nameIsAdded) {
                     System.out.println(" Name " + input + " was added to the list.");
                 } else {
                     System.out.println(" Error accrued ");
@@ -68,16 +67,16 @@ public class Main {
             }
             //sc.close();
         }
-	}
+    }
 
 
 
     public static boolean addNewName(String name) {
 
-	    boolean result = false;
+        boolean result = false;
 
-        FileSystem fileSystem= FileSystems.getDefault();
-        Path path= fileSystem.getPath("C:\\Users\\deltagare\\Desktop\\workshop-exception\\workshop\\firstname_males.txt");
+        FileSystem fileSystem = FileSystems.getDefault();
+        Path path = fileSystem.getPath("C:\\Users\\deltagare\\Desktop\\workshop-exception\\workshop\\firstname_males.txt");
         //StringBuffer str = new StringBuffer(name);
         //str.append(',').toString();
         //System.out.println(str);
